@@ -1,45 +1,40 @@
-public class Bus {
-    private String routeNumber;
-    private int capacity;
-    private int passengerCount;
-    public Bus(String routeNumber, int capacity) {
-        this.routeNumber = routeNumber;
+class Bus {
+    String routeNum;
+    int capacity;
+    int passCount;
+    Schedule schedule;
+    public Bus(String routeNum, int capacity) {
+        this.routeNum = routeNum;
         this.capacity = capacity;
-        this.passengerCount = 0;
+        this.passCount = 0;
     }
-    public String getRouteNumber() {
-        return routeNumber;
-    }
-    public void setRouteNumber(String routeNumber) {
-        this.routeNumber = routeNumber;
-    }
-    public int getCapacity() {
-        return capacity;
-    }
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-    public int getPassengerCount() {
-        return passengerCount;
-    }
-    public void setPassengerCount(int passengerCount) {
-        if (passengerCount <= capacity) {
-            this.passengerCount = passengerCount;}
-        else {
+    public void setPassCount(int passCount) {
+        if (passCount <= capacity) {
+            this.passCount = passCount;
+        } else {
             System.out.println("Автобус полный");
         }
     }
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+    public String getRouteNum() {
+        return routeNum;
+    }
+    public Schedule getSchedule() {
+        return schedule;
+    }
     public String toString() {
-        return "Автобус(" +
-                "Номер='" + routeNumber + '\'' +
+        return "Автобус(Номер='" + routeNum + '\'' +
                 ", вместимость=" + capacity +
-                ", количество пассажиров=" + passengerCount +
+                ", количество пассажиров=" + passCount +
+                (schedule != null ? ", расписание: " + schedule : "") +
                 ')';
     }
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Bus bus = (Bus) obj;
-        return capacity == bus.capacity && passengerCount == bus.passengerCount && routeNumber.equals(bus.routeNumber);
+        return capacity == bus.capacity && routeNum.equals(bus.routeNum);
     }
 }
